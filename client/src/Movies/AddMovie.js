@@ -3,14 +3,14 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const AddMovie = props => {
-    const initialUpdateData = {
+    const initialMovieData = {
         title: '',
         director: '',
         metascore: '',
         stars: []
     };
 
-    const [newMovie, setNewMovie] = useState(MovieData);
+    const [newMovie, setNewMovie] = useState(initialMovieData);
     const history = useHistory();
 
     const onChange = e => {
@@ -25,7 +25,7 @@ const AddMovie = props => {
         console.log(newMovie);
         axios.put('http://localhost:5000/api/movies/${id}', newMovie)
         .then(({data}) =>{
-            setUpdateData(initialUpdateData);
+            setNewMovie(initialMovieData);
             history.push('/');
         }).catch(err=>{
             console.log(err);

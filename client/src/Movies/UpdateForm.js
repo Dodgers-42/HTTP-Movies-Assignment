@@ -11,7 +11,7 @@ const UpdateForm = props => {
         stars: []
     };
 
-    const [updateData, setUpdateData] = useState(UpdataData);
+    const [updateData, setUpdateData] = useState(initialUpdateData);
     const {id} = useParams();
     const history = useHistory();
 
@@ -25,7 +25,7 @@ const UpdateForm = props => {
     const onSubmit = e => {
         e.preventDefault();
         axios.put('http://localhost:5000/api/movies/${id}', updateData)
-        .then(({data}) =>{
+        .then(({data})=>{
             console.log(data);
             setUpdateData(initialUpdateData)
             history.push('/');
